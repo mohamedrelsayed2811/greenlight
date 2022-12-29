@@ -34,7 +34,7 @@
     <meta property="og:locale" content=<%=user_locale(@room&.owner)%> />
     <meta property="og:description" content="<%= yield(:page_desc).present? ? yield(:page_desc) : t("landing.about", href: "Greenlight", locale: :en) %>" />
     <meta property="og:url" content="<%= request.base_url %>" />
-    <meta property="og:image" content="<%= logo_image %>" />
+    <meta property="og:image" content="https://ostaz.nt3lm.com/store/1/logo1.png" />
     <meta name="viewport" content= "width=device-width, user-scalable=no">
     <%= csrf_meta_tags %>
 
@@ -62,7 +62,36 @@
 
   <body class="app-background" data-controller="<%= controller_name %>" data-action="<%= action_name %>" data-relative-root="<%= Rails.configuration.relative_url_root || "/" %>">
     <%= render "shared/header" %>
+<script>
+      function getCurrentURL () {
+        return window.location.href
+      }
+        function isFacebookApp() {
+          var ua = navigator.userAgent || navigator.vendor || window.opera;
+          return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
+      }
+      const url = getCurrentURL();
+      var splitUrl = url.split('/');
 
+      var final_url =  splitUrl[2];
+      for (i = 3 ; i<9 ; i++){
+        if(splitUrl[i] != undefined){
+        final_url += '/'+ splitUrl[i];
+        }
+
+      }
+
+
+      
+
+      if(isFacebookApp()==true){
+     
+              
+        window.location.replace("intent://" + final_url+ "#Intent;scheme=https;package=com.android.chrome;end");
+              
+      }
+      
+      </script>
     <div class="wrapper">
       <% if bigbluebutton_endpoint_default? %>
         <div class="alert alert-icon alert-danger text-center mb-0">
