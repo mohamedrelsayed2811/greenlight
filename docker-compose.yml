@@ -3,7 +3,11 @@ version: '3'
 services:
   app:
     entrypoint: [bin/start]
+<<<<<<< HEAD
     image: nt3lm:release-v2
+=======
+    image: meeting:release-v2
+>>>>>>> 213d32cf95361588d109d89ce8cc42796687cc5e
     container_name: greenlight-v2
     env_file: .env
     restart: unless-stopped
